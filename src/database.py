@@ -1,6 +1,5 @@
 import mysql.connector
 from mysql.connector import Error
-from typing import List, Dict, Any, Optional
 
 class DataBase:
     def __init__(self, host: str, user: str, port: int, database: str, password: str):
@@ -37,14 +36,7 @@ class DataBase:
             print(f"Erro ao conectar ao banco de dados: {err}")
             raise
 
-    def fetch_all(self, query: str, params: Optional[tuple] = None) -> List[Dict[str, Any]]:
-        """
-        Executa uma consulta e retorna todos os resultados.
-
-        :param query: Consulta SQL a ser executada.
-        :param params: Parâmetros para a consulta (opcional).
-        :return: Lista de dicionários contendo os resultados.
-        """
+    def fetch_all(self, query: str, params:tuple):
         conn = None
         cursor = None
         try:
@@ -62,14 +54,7 @@ class DataBase:
                 conn.close()
                 print("Conexão ao banco de dados encerrada.")
 
-    def fetch_one(self, query: str, params: Optional[tuple] = None) -> Optional[Dict[str, Any]]:
-        """
-        Executa uma consulta e retorna o primeiro resultado.
-
-        :param query: Consulta SQL a ser executada.
-        :param params: Parâmetros para a consulta (opcional).
-        :return: Um dicionário contendo o primeiro resultado ou None.
-        """
+    def fetch_one(self, query: str, params:tuple):
         conn = None
         cursor = None
         try:
@@ -87,13 +72,7 @@ class DataBase:
                 conn.close()
                 print("Conexão ao banco de dados encerrada.")
 
-    def execute(self, query: str, params: Optional[tuple] = None) -> None:
-        """
-        Executa uma consulta que não retorna resultados (INSERT, UPDATE, DELETE).
-
-        :param query: Consulta SQL a ser executada.
-        :param params: Parâmetros para a consulta (opcional).
-        """
+    def execute(self, query: str, params:tuple):
         conn = None
         cursor = None
         try:
